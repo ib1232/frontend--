@@ -1,0 +1,246 @@
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet"  href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<nav>
+   <ul class="menu">
+     <div class="logo-and-items">
+       <div class="logo text-center">
+         <img width="110" height="70" class="d-inline-block align-top" src="assets/p.png" alt="">
+       </div>
+       <li class="item button secondary" style="margin-left: 300px;"><a routerLink="/dashboard">Tableau de bord</a></li>
+       <li class="item button secondary" (click)="onOpenModal(ship, 'add')"><a>Ajouter navire</a></li>
+       <li class="item button"><a routerLink="/login">Déconnexion</a></li>
+       <li class="toggle"><span class="bars"></span></li>
+     </div>
+     <div class="search-container" style="margin-right: 100px;">
+       <form class="d-flex input-group w-auto">
+         <input type="search" (ngModelChange)="searchShips(key.value)" #key="ngModel" ngModel name="key" id="searchName" class="form-control" style="border-radius: 50em; width: 300px;" placeholder="Rechercher nom, terminal ..." required>
+         <span class="input-group-text border-0" id="search-addon" style="background-color: rgba(21, 166, 166, 0.504); border-radius: 50em; ">
+           <i class="fas fa-search"></i>
+         </span>
+       </form>
+     </div>
+   </ul>
+ </nav>
+<div style="background-color: rgba(255, 255, 255, 0.13); ">
+<!-- Add Employee Modal -->
+<div class="modal fade" id="addShipModal" tabindex="-1" role="dialog" aria-labelledby="addShipModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addShipModalLabel">Ajouter navire</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddShip(addForm)">
+            <div class="form-group">
+               <label for="nom">Nom</label>
+               <input type="text" ngModel name="nom" class="form-control" id="nom" placeholder="Nom" required>
+            </div>
+            <div class="form-group">
+               <label for="post">Post</label>
+               <input type="text" ngModel name="post" class="form-control" id="post" placeholder="post" required>
+            </div>
+            <div class="form-group">
+               <label for="terminal">Terminal</label>
+               <input type="text" ngModel name="terminal" class="form-control" id="terminal" placeholder="terminal" required>
+            </div>
+            <div class="form-group">
+               <label for="grue">Nombre de grue</label>
+               <input type="number" ngModel name="grue" class="form-control" id="grue" placeholder="grue" required>
+            </div>
+            <div class="form-group">
+               <label for="engin">Nombre d'engin</label>
+               <input type="number" ngModel name="engin" class="form-control" id="engin" placeholder="engin" required>
+            </div>
+            <div class="form-group">
+                <label for="equipe">Equipe</label>
+                <input type="text" ngModel name="equipe" class="form-control" id="equipe" placeholder="equipe" required>
+             </div>
+            <div class="modal-footer">
+               <button type="button" id="add-ship-form" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Sauvegarder</button>
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div>
+  
+
+  <!-- Edit Modal -->
+  <div class="modal fade" id="updateShipModal" tabindex="-1" role="dialog" aria-labelledby="shipEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="updateShipModalLabel">Modifier navire {{editShip?.nom}}</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <form #editForm="ngForm">
+                <div class="form-group">
+                   <label for="nom">Nom</label>
+                   <input type="text" ngModel="{{editShip?.nom}}" name="nom" class="form-control" id="nom" aria-describedby="nom" placeholder="nom">
+                </div>
+                <input type="hidden" ngModel="{{editShip?.id}}" name="id" class="form-control" id="id" placeholder="id">
+                
+                <div class="form-group">
+                   <label for="post">Post</label>
+                   <input type="text" ngModel="{{editShip?.post}}" name="post" class="form-control" id="post" placeholder="post">
+                </div>
+                <div class="form-group">
+                    <label for="terminal">Terminal</label>
+                    <input type="text" ngModel="{{editShip?.terminal}}" name="terminal" class="form-control" id="terminal" placeholder="grue">
+                 </div>
+                <div class="form-group">
+                   <label for="grue">Nombre de Grue</label>
+                   <input type="number" ngModel="{{editShip?.grue}}" name="grue" class="form-control" id="grue" placeholder="grue">
+                </div>
+                <div class="form-group">
+                   <label for="engin">Nombre d'engin</label>
+                   <input type="number" ngModel="{{editShip?.engin}}" name="engin" class="form-control" id="engin" name="engin" placeholder="engin">
+                </div>
+                <div class="form-group">
+                   <label for="equipe">Equipe</label>
+                   <input type="text" ngModel="{{editShip?.equipe}}" name="equipe" class="form-control" id="equipe" placeholder="equipe">
+                </div>
+                <div class="modal-footer">
+                   <button type="button" id="" data-dismiss="modal" class="btn btn-secondary" >Fermer</button>
+                   <button (click)="onUpdateShip(editForm.value)" data-dismiss="modal" class="btn btn-primary" style="background-color: rgba(24, 167, 167, 0.767);" >Sauvegarder</button>
+                </div>
+             </form>
+          </div>
+       </div>
+    </div>
+  </div>
+  
+
+  <!-- Delete Modal -->
+  <div class="modal fade" id="deleteShipModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteModelLabel">Supprimer navire</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Êtes-vous sûr de vouloir supprimer le navire {{deleteShip?.nom}}?</p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                <button  (click)="onDeleteShip(deleteShip!.id)" class="btn btn-danger" data-dismiss="modal" style="background-color: rgba(31, 171, 171, 0.837);">Oui</button>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+  
+
+<!-- Notification for no employees -->
+<div *ngIf="ships?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">Aucun navire!</h4>
+      <p>Aucun navire n'a été trouvé .</p>
+    </div>
+    </div>
+
+
+
+<!--Body-->
+<div class="container mt -5 mb-5" id="main-container" >
+ 
+   <!-- pagination -->
+   <div class="item-controller" style="margin-top: 13px; " >
+      <h5>Afficher</h5>
+    <select (change)="onTableSizeChange($event)" style="margin-left: 10px; margin-right: 10px; " >
+      <option  *ngFor="let size of tableSizes" [value]="size" [selected]="size === 10">
+       {{size}} 
+      </option>
+    </select>
+    <h5>Par page</h5>
+    
+   </div><br>
+
+
+   <!-- Table -->
+   <div class="tbl-header" style="width: 85%; margin-left: 125px;">
+    <table cellpadding="0" cellspacing="0" >
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Post</th>
+          <th>Terminal</th>
+          <th>Grue</th>
+          <th>Engin</th>
+          <th>Equipe</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      </table>
+      </div>
+      <div class="tbl-content" style="width: 85%; margin-left: 125px;">
+         <table cellpadding="0" cellspacing="0" border="0" >
+      <tbody >
+        <tr *ngFor="let ship of ships | paginate:{
+          itemsPerPage: tableSize,
+          currentPage: page,
+          totalItems: count};  let i =index">
+       
+          <td>{{ ship?.nom }}</td>
+          <td>{{ ship?.post }}</td>
+          <td>{{ ship?.terminal }}</td>
+          <td>{{ ship?.grue }}</td>
+          <td>{{ ship?.engin }}</td>
+          <td>{{ ship?.equipe }}</td>
+          <td>
+            <!-- Edit button with Font Awesome icon -->
+            <button (click)="onOpenModal(ship, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"  style=" margin-left: 20px;"><i class="fa fa-pencil" style="color: #2275c8;" ></i> 
+            </button>
+            <!-- Delete button with Font Awesome icon -->
+            <button (click)="onOpenModal(ship, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete" style=" margin-left: 2px; ">
+               <i class="fa fa-times" style="color: red;"></i>
+             </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <!--Pagination-->
+    <div style="margin-left: 450px; margin-top: 15px; " >
+      <pagination-controls
+       previousLabel="Précédent"
+       nextLabel="Suivant"
+       (pageChange)="onTableDataChange($event)" >
+
+      </pagination-controls>
+    </div>
+    
+   </div>
+</div>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+  
+  <script>
+    // DataTable initialization code
+    new DataTable('#userTable', {
+     
+    });
+  </script>
+  <script>
+   $(window).on("load resize ", function() {
+  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+  $('.tbl-header').css({'padding-right':scrollWidth});
+}).resize();
+  </script>
+  

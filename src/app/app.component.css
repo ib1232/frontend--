@@ -1,0 +1,557 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Quicksand:wght@300;400&display=swap');
+
+
+    /* Style menu items */
+    .menu-item {
+      list-style: none; /* Remove default list-style */
+      display: inline-block; /* Display items in a row */
+    }
+    
+    .menu-item a {
+      padding: 10px 20px; /* Add padding around the links for spacing */
+      text-decoration: none; /* Remove underline from links */
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    .menu-item i {
+      margin-right: 5px; /* Add margin to the icon for spacing */
+    }
+    
+    /* Add hover effect to menu items */
+    .menu-item:hover a {
+      color: grey; /* Change the text color on hover */
+    }
+    
+      /* Add a CSS block to center the table */
+      #example {
+        margin: 0 auto; /* Set margins to auto for left and right sides */
+        width: 70%; /* Set the width of the table */
+        color: rgb(199, 191, 191) !important; /* Set the text color */
+      }
+    
+      /* Apply styles for the table header and body */
+      #example th {
+        background-color: rgba(72, 64, 64, 0.744) !important;
+        border-color: rgba(62, 62, 59, 0.373) !important;
+      }
+    
+      #example td {
+        font-family: "Poppins", sans-serif;
+        background-color: rgba(179, 175, 175, 0.199) !important;
+        color: rgba(0, 0, 0, 0.766) !important;
+        border-color: rgba(255, 255, 255, 0) !important;
+      }
+    
+      /* Remove unnecessary inline styles */
+      .example thead,
+      .example tbody {
+        border-color: rgb(89, 224, 76) !important;
+      }
+    
+    /* Add some spacing and styling to the table */
+    .main-container {
+      margin-top: 30px;
+    }
+    
+    .example {
+      width: 100%;
+    }
+    
+    .example thead th {
+      background-color: #343a40;
+      color: #fff;
+      padding: 12px 20px;
+      text-align: left;
+    }
+    
+    .example tbody td {
+      padding: 10px 20px;
+    }
+    
+    .example tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    
+    /* Style the action buttons */
+    .example tbody td:last-child {
+      white-space: nowrap; /* Prevent action buttons from wrapping to the next line */
+    }
+    
+    .example tbody td button {
+      margin-right: 5px;
+    }
+    
+    /* Hover effect on action buttons */
+    .example tbody td button:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    
+    /* Style the Edit button */
+    .example tbody td button.btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      color: #fff;
+    }
+    
+    /* Style the Delete button */
+    .example tbody td button.btn-danger {
+      background-color: #dc3545;
+      border-color: #af3d48;
+      color: #fff;
+    }
+    
+    /* Optional: Add border-radius to buttons for a rounded look */
+    .example tbody td button {
+      border-radius: 4px;
+    }
+    /* Existing styles remain unchanged */
+    
+    /* Add icon styles to the buttons */
+    .example tbody td button i {
+      margin-right: 5px;
+    }
+    
+    /* Optional: Add some spacing between the button text and icon */
+    .example tbody td button span {
+      padding-right: 5px;
+    }
+    
+      .main-container {
+        margin-top: 30px;
+        font-family: "Poppins", sans-serif;
+      }
+    
+      /* Align pagination at the bottom */
+      .userTable_paginate {
+   
+        text-align: center;
+        margin-top: 10px;
+      }
+     .item-controller{
+
+      flex-shrink:0;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+     }
+     .item-controller select{
+    
+      padding: 2px;
+      margin: 0 10px;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+     }
+     .bottom-field{
+      width: 100%;
+      padding: 20px;
+      margin-top: 20px;
+     }
+    .pagination{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .pagination li{
+      font-family: "Poppins", sans-serif;
+      list-style: none;
+      padding: 2px;
+      margin: 10px;
+      flex-shrink: 0;
+      text-align: center;
+      border-radius: 5px;
+      border: 1px solid #999;
+      color: #999;
+    }
+    .pagination li.active{
+      background: #32d6aa;
+      color: white;
+      border-color: #32d6aa;
+    }
+    
+    .pagination li a{
+      text-decoration: none;
+      color: inherit;
+      padding: 3px 8px;
+      display: block;
+      font-family: "Poppins", sans-serif;
+      font-size: 13px;
+    }
+    .footer{
+      margin-top: 25px;
+      font-size: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    button{
+      font-family: "Poppins", sans-serif;
+      padding: 7px 10px;
+      color: rgb(19, 18, 18);
+      background-color: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    button.active, button:hover{
+      background: rgba(118, 116, 116, 0.553);
+    }
+
+    /* nav buttons */
+    .nav-link{
+      font-family: "Poppins", sans-serif;
+    font-size: 7px;
+    background: #696a6bc3;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+    }
+    .nav-link:hover, .nav-link:focus, .nav-link:active{
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+    /* table style */
+    .content-table{
+       border-collapse: collapse;
+       font-size: 0.9rem;
+       min-width: 400px;
+       border-radius: 5px 5px 0 0;
+       overflow: hidden;
+       box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+    .content-table thead tr{
+      background-color: rgba(129, 52, 52, 0.853);
+      color: #fff;
+      text-align: left;
+      font-weight: bold;
+   
+    }
+    .content-table th,
+    .content-table td{
+      padding: 12px 15px;
+      font-size: 17px;
+      
+    
+    }
+    .content-table tbody tr {
+         border-bottom: 1px solid #dddddd;
+    }
+    .content-table tbody tr:nth-of-type(even){
+      background-color: #f3f3f3;
+    }
+    .content-table tbody tr:last-of-type{
+      border-bottom: 2px solid rgba(129, 52, 52, 0.853);
+    }
+
+
+
+    /* nav*/
+    /* Basic styling */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: sans-serif;
+}
+nav {
+  background: #222;
+  padding: 5px 20px;
+}
+ul {
+  list-style-type: none;
+}
+li, a {
+  color: white;
+  text-decoration: none;
+}
+a:hover, li:hover {
+  text-decoration: underline;
+}
+.logo a:hover {
+  text-decoration: none;
+}
+.menu li{
+  font-size: 16px;
+  padding: 15px 5px;
+  white-space: nowrap;
+}
+.logo a,
+.toggle a {
+  font-size: 20px;
+}
+.button.secondary {
+  border-bottom: 1px #444 solid;
+}
+/* ... Your existing styles ... */
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.logo-and-items {
+  display: flex;
+  align-items: center;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Pushes the search bar to the right */
+}
+
+/* ... Your existing styles ... */
+
+
+/* Mobile menu */
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.toggle {
+  order: 1;
+}
+.item.button {
+  order: 2;
+}
+.item {
+  width: 100%;
+  text-align: center;
+  order: 3;
+  display: none;
+}
+.item.active {
+  display: block;
+}
+
+/* Navbar Toggle */
+.toggle {
+  cursor:pointer;
+}
+.bars {
+  background: #999;
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+}
+.bars:before,
+.bars:after {
+  background: #999;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+.bars:before {
+  top: 5px;
+}
+.bars:after {
+  top: -5px;
+}
+
+/* Tablet menu */
+@media all and (min-width: 468px) {
+  .menu {
+      justify-content: center;
+  }
+
+  .logo {
+      flex: 1;
+  }
+
+  .item.button {
+      width: auto;
+      order: 1;
+      display: block;
+  }
+  .toggle {
+      order: 2;
+  }
+  .button.secondary {
+      border: 0;
+  }
+  .button a {
+      padding: 7.5px 15px;
+      background: teal;
+      border: 1px #006d6d solid;
+      border-radius:50em;
+  }
+  .button.secondary a {
+      background: transparent;    
+  }
+  .button a:hover {
+      text-decoration: none;
+      transition:all .25s;
+  }
+  .button:not(.secondary) a:hover {
+      background: #006d6d;
+      border-color: #005959;
+  }
+  .button.secondary a:hover {
+      color: #ddd;
+  } 
+}
+
+/* Desktop menu */
+@media all and (min-width: 768px) {
+  .item {
+      display: block;
+      width: auto;
+  }
+  .toggle {
+      display: none;
+  }
+  .logo {
+      order: 0;
+  }
+  .item {
+      order: 1;
+  }
+  .button {
+      order: 2;
+  }
+  .menu li {
+      padding: 15px 10px;
+  }
+  .menu li.button {
+      padding-right: 0;
+  }
+}
+
+/* search*/
+
+.container .input{
+	border: 0;
+	outline: none;
+	color: #8b7d77;
+}
+
+.search_wrap{
+	width: 500px;
+	margin: 38px auto;
+}
+
+.search_wrap .search_box{
+	position: relative;
+	width: 500px;
+	height: 60px;
+}
+
+.search_wrap .search_box .input{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 80%;
+	height: 80%;
+	padding: 5px 20px;
+	border-radius: 3px;
+	font-size: 18px;
+}
+
+.search_wrap .search_box .btn{
+	position: absolute;
+	top: 5px;
+	right: 0;
+	width: 60px;
+	height: 100%;
+	background: #7690da;
+	z-index: 1;
+	cursor: pointer;
+}
+
+.search_wrap .search_box .btn:hover{
+	background: #708bd2;	
+}
+
+.search_wrap .search_box .btn.btn_common .fas{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: #fff;
+	font-size: 20px;
+}
+
+.search_wrap.search_wrap_1 .search_box .btn{
+	right: 0;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+.search_wrap.search_wrap_1 .search_box .input,
+.search_wrap.search_wrap_3 .search_box .input{
+	padding-right: 80px;
+}
+
+.search_wrap.search_wrap_2 .search_box .btn{
+	left: 0;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+.search_wrap.search_wrap_2 .search_box .input,
+.search_wrap.search_wrap_4 .search_box .input{
+	padding-left: 80px;
+}
+
+.search_wrap.search_wrap_3 .search_box .input,
+.search_wrap.search_wrap_4 .search_box .input,
+.search_wrap.search_wrap_6 .search_box .input{
+	border-radius: 50px;
+}
+
+.search_wrap.search_wrap_3 .search_box .btn{
+	right: 0px;
+	border-radius: 50%;
+}
+
+.search_wrap.search_wrap_4 .search_box .btn{
+	left: 0px;
+	border-radius: 50%;
+}
+
+.search_wrap.search_wrap_6 .search_box .btn,
+.search_wrap.search_wrap_5 .search_box .btn{
+	width: 125px;
+	height: 45px;
+	top: 8px;
+	right: 5px;
+	border-radius: 3px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.search_wrap.search_wrap_6 .search_box .btn{
+	border-radius: 25px;
+}
+
+
+.search_wrap.search_wrap_5 .search_box .input,
+.search_wrap.search_wrap_6 .search_box .input{
+	padding-right: 145px;
+}

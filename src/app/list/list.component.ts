@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ship } from './ship';
-import { shipService } from './ship.service';
+import { ship } from '../ship';
+import { shipService } from '../ship.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './services/AuthService';
+import { LoginComponent } from '../login/login.component';
+import { AuthService } from '../services/AuthService';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 
+
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.css']
 })
-export class AppComponent implements OnInit {
+export class ListComponent implements OnInit{
   public ships: ship[] = [];
   ship: any;
   public editShip: ship | undefined;

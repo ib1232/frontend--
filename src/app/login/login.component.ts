@@ -1,61 +1,57 @@
 import { Component, OnInit } from '@angular/core';
-import { ship } from './ship';
-import { shipService } from './ship.service';
+import { Router } from '@angular/router'; // Import Router
+import { AuthService } from '../services/AuthService';
+import { ListComponent } from '../list/list.component';
+import { ship } from '../ship';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './services/AuthService';
-import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class AppComponent implements OnInit {
+export class LoginComponent implements OnInit {
+
+  username: string | undefined;
+  password: string | undefined;
+  errorMessage = 'Données invalides !';
+  successMessage: string | undefined;
+  invalidLogin = false;
+  loginSuccess = false;
+
   public ships: ship[] = [];
   ship: any;
   public editShip: ship | undefined;
   public deleteShip: ship | undefined;
-  //pagination
+  shipService: any;
 
-  page: number = 1;
-  count: number = 0;
-  tableSize: number = 10;
-  tableSizes: any = [5,10,15,20];
-  
-
-  constructor (private shipService: shipService, private router: Router){}
-
-//pagination
-shipList():void{
-  this.shipService.getShips().subscribe((response)=>{
-    this.ships=response;
-    console.log(this.ships);
-  })
-}
-
-onTableDataChange(event: any){
-  this.page=event;
-  this.shipList
-}
-
-onTableSizeChange(event:any):void{
-  this.tableSize= event.target.value;
-  this.page=1;
+  constructor(private authService: AuthService, private router: Router) {} // Inject Router
+  ngOnInit(): void {
+  this.getShips();
   this.shipList();
 }
+shipList() {
+  throw new Error('Method not implemented.');
+}
+
+
 
 logout() {
 
-  this.router.navigate(['login']);
+this.router.navigate(['login']);
 }
+  handleLogin() {
+    if (this.username === 'user' && this.password === '123') { // Check username and password
+      this.invalidLogin = false;
+      this.loginSuccess = true;
+      this.successMessage = 'Connexion réussie';
 
-
-//CRUD
-  ngOnInit() {
-    this.getShips();
-    this.shipList();
+      this.router.navigate(['/list']); 
+    } else {
+      this.invalidLogin = true;
+      this.loginSuccess = false;
+    }
   }
 
   public getShips(): void{
@@ -157,5 +153,5 @@ logout() {
     button.click();
   }
 }
-
 }
+

@@ -1,62 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { ship } from './ship';
-import { shipService } from './ship.service';
+import { shipService } from '../ship.service';
+import { ship } from '../ship'; // Import the ship type
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './services/AuthService';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class AppComponent implements OnInit {
+export class DashboardComponent implements OnInit {
+  numberOfShips: number = 0;
+  totalGrue: number = 0;
+  totalEngin: number = 0;
   public ships: ship[] = [];
   ship: any;
   public editShip: ship | undefined;
   public deleteShip: ship | undefined;
-  //pagination
 
-  page: number = 1;
-  count: number = 0;
-  tableSize: number = 10;
-  tableSizes: any = [5,10,15,20];
-  
+  constructor(private shipService: shipService , private router: Router) {}
 
-  constructor (private shipService: shipService, private router: Router){}
+  ngOnInit(): void {
+    this.shipService.getShips().subscribe((ships: ship[]) => {
+      this.numberOfShips = ships.length;
+      this.totalGrue = ships.reduce((total, ship) => total + parseFloat(ship.grue), 0); // Convert to number
+      this.totalEngin = ships.reduce((total, ship) => total + parseFloat(ship.engin), 0);
+    });
+ 
+    this.getShips();
+    this.shipList();
+  }
+  shipList() {
+    throw new Error('Method not implemented.');
+  }
 
-//pagination
-shipList():void{
-  this.shipService.getShips().subscribe((response)=>{
-    this.ships=response;
-    console.log(this.ships);
-  })
-}
 
-onTableDataChange(event: any){
-  this.page=event;
-  this.shipList
-}
-
-onTableSizeChange(event:any):void{
-  this.tableSize= event.target.value;
-  this.page=1;
-  this.shipList();
-}
 
 logout() {
 
   this.router.navigate(['login']);
 }
 
-
-//CRUD
-  ngOnInit() {
-    this.getShips();
-    this.shipList();
-  }
 
   public getShips(): void{
     this.shipService.getShips().subscribe(
@@ -157,5 +142,5 @@ logout() {
     button.click();
   }
 }
-
 }
+

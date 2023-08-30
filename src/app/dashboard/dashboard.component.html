@@ -1,0 +1,59 @@
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link rel="stylesheet"  href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<nav>
+  <ul class="menu">
+    <div class="logo-and-items">
+      <div class="logo text-center">
+        <img width="110" height="70" class="d-inline-block align-top" src="assets/p.png" alt="">
+      </div>
+      <li class="item button secondary" style="margin-left: 300px;"><a routerLink="/dashboard">Tableau de bord</a></li>
+      <li class="item button secondary" ><a routerLink="/list">Liste</a></li>
+      <li class="item button "><a routerLink="/login">Déconnexion</a></li>
+
+      <li class="toggle"><span class="bars"></span></li>
+    </div>
+    <div class="search-container" style="margin-right: 100px;">
+      <form class="d-flex input-group w-auto">
+        <input type="search" (ngModelChange)="searchShips(key.value)" #key="ngModel" ngModel name="key" id="searchName" class="form-control" style="border-radius: 50em; width: 300px;" placeholder="Rechercher nom, terminal ..." required>
+        <span class="input-group-text border-0" id="search-addon" style="background-color: rgba(21, 166, 166, 0.504); border-radius: 50em; ">
+          <i class="fas fa-search"></i>
+        </span>
+      </form>
+    </div>
+  </ul>
+</nav>
+
+
+<div class="home-content">
+  <div class="overview-boxes" style="margin-top: 50px;">
+    <div class="box" style="margin-left: 140px; margin-top: 50px; background-color: rgba(38, 140, 187, 0.436);">
+      <div class="right-side" >
+        <div class="box-topic">Nombre de navire</div>
+        <div class="number">{{ numberOfShips }}</div>
+      </div>
+      <img style="margin-left: 25px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAAXNSR0IArs4c6QAAA4JJREFUaEPtmVnITVEUx3+fF0OhhEiJKEPG8EAKmcojIZmVyAsPPBgSKZSEPMhMCUk8GpIpPJEQGZI5lBAZntBf63wdp3P33ufcc4++uqtO97v3rLX2f6/932utvb8GmqA0NEHM1EHbqnUCesdW8CHwrsgVrUWk5wEHYyDnA4fqoKuMQAtgADA49vQHWsb8/gDuAbdjz13gZ96x89BjATDWQPbJOzDwwCZxETiQxU9W0BuANVkGCNRdC8h3kGQFfQ6Y4PGsTHELUNZQFhkCKKO45AwwKQgxZM7Tl4FRMedvDaBA3rS/9VtSOhv4ofapiei3SK4Ao8sCnXWl4rh+10E7lilJj2SkWwMjgRHAQOAOcAO4BnxN+C0t0pcS3OtiHBdQPcrZlUS5WeD1iMNv/hc9QveOT6/QjaiKpwiOs0eVr5kPQY73v6zQXAD0aDUqVkzf7k82Pznw5DLRuIcrWfpAdwOe5Rq2OiMVo/d5QctOxcJX0aqD+K/1U6Cny6Ev0rJVLzy3SFQeX/uAhdWCLpvXM4Gj1YIum9dOPmsyIfQok9fqDL09eijosni9C1ji2z+hoMvi9VTgZFGgy+J1O+BTUaDL4LUOv66Gq3EuofTIkq/VO2wDvgOt7Ew53Bc9YAewLEAvOHvIl4/X6p2VY++nDDwZWA/0c4CaApwqGrSL1wK0zjOgOkaduldW0OsAfCgatPy9BtT4q5nRKeY8cDpk88TAtAcU+Yl2oNDmewz0CgGcpbiE+itFL7kR29rR/gWg66y80t06Q3WIz/M6MTtVSPn5HPlJgtbdg86BEp0e9me48dRV2VJgPCD+RqLJnwW2AtcDJ6AuTxtfB2TJGKPj3y8u0JF/DTQDeFVhQKW13cCsAEB7La0pHaZJD+AYMCzxMjNo2WuQ5YB6g7goqup/uwYAjlReAnPsRB430ypttNyedOcErbSmS/DZgHiZFGUPZY0vtvP7pujonSIfFZdFQJsUPV0pXAWU6gSqY4rOE4u8Lukb94arIooSzmY8ZRDl6i0GOHotMDuBaRlWQ6qrgE1pNr4yPsi6LnHNJWpyFgMnHErTgT0Voh43ewRIVxU2VXygI6MVttGSDY0253FgM/AxIJKiwmqLevzWVKa6eT0CbPf5CQUd+dG/JXRSbm4cCyq7FUBoAtpDSom6pvjmAxu9zwo61G9N9eqgaxremPM/hCKpLl8jAWgAAAAASUVORK5CYII="/>
+    </div>
+
+
+    <div class="box" style=" margin-top: 50px; background-color: rgba(228, 189, 62, 0.455);">
+      <div class="right-side">
+        <div class="box-topic">Total des grues affectés</div>
+        <div class="number">{{totalGrue}}</div>
+      </div>
+      <img style="margin-left: 25px; "  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAAXNSR0IArs4c6QAAA+lJREFUaEPtmVfIjmEYx3+fUU6sjGRkp2RGOZBwQJIkiVIySpKVPbL3HlkZB1JOCCknDoQDB1ZkZERmUkYRpQj9dT1fj8d9P+N9n9f3fuU6fO/1e677uq/1VlANpaIaMvMfOnJrPYGbpbjJvDVdA5gArAZaAG+BVcAB4HteH5An9FBgE9DFAfcIWAycygM8D+gewE6gfwqgK8B04HqKud4pxUC3Mc2O9uz+EmjlGTsNzAeeFAJfCHRDYBkw23PgY2ARcBKQyWwBOnvm7jabf58FPgt0HWCm2WYDxyEf7AHuA76FxmsCkw2uqWPdJ2CDmdjXNPBpoDVnHLA25rp1lqDlKQTt8hR17YN1Q1JAVF4BS4GjwM84+CTowcBmoHsaDdich8A84KxnTXPbcyw4g9tde6yXfGf6oOW2tgODPAv1gDYCeoS+OeeBWcA9zx69gB1AP8/4Oft4fcQf4oLWFS/3bPQaWAEcDo0PA7YCnTxrDtq1K9C4ZKRpvr1nfIE95srhKLQOfuB5ZOuBbTFmMs1supFjzmdgnd2ObwvdihQi7xSVjoC80m+JQg8ALjgWySXpBvYnhOP6drACSG3HPk+BhcCJyJge5gx7qC7ogcDFrNDBfIVjXdeZGI1rqJ3dygjPvMtm77eAicBKy1V82xYFHWyqr5Zm/nokkVN1c7uAbh4aubmWCQrQcC7QwTnyqUqE9EDjZJLZc5MUgFeBN8Dw0NxcoYN9FXjkAr/EQDUDrsVoVg5gCaC8ROaiRxlISaC1ubQjV3nIAa7wr2jn0/QNoHdoXSZopZeVrzTFVbqm3AemAopoowC5SrmsONFc2X8gmaB9Lq8Q/udAa89CeY++obGygXbx3jG7VV4STorKEvqZ2fsx4Id9TVlDK/eY4lB7WUMr4h2JgVaAmQscL4eHGDD4oN9ZxbIXiFYsVeY9kqCVXH30eJeyhXbxKjNUTqNAFM72YiOi2gJKH/MUn3lEzxhj5tLWcbj8/Yvg96yVSyEfkwStIKNmTziMh89RDqI2W6XE1Yh7UnaNkj7EB63ySmWaL+dWwFExkapGDEMMsfqtaxJZzHgUWuWYqiD57lqOdbet0FBh65SkFoIWqRM6HliTUF34zgigVVKp56HuUz3HZPlrda6UowdRs2DoYKEOnWOHqvGSVgSt6Kec21WlqMOkbqtaFrl1mKJwjS2PkGtKI4JyaVZr1cvTI1OgSS1pzMO3mR6Suk/qW2QVNSdVlf+zrmkUsA8gT+NzWeH5Vd6fjsKrSlH3s4ND7WX3T0CYUS5MpZZqRdl+2f/nElWwSrdi682iXV7Wx1ay+cV4j5JBJW1cLaF/AbOi2S6VdInwAAAAAElFTkSuQmCC"/>
+    </div>
+
+
+    <div class="box" style="margin-right: 140px; margin-top: 50px; background-color: rgba(226, 105, 25, 0.492)">
+      <div class="right-side">
+        <div class="box-topic">Total des engins affectés</div>
+        <div class="number">{{totalEngin}}</div>   
+      </div>
+      <img style="margin-left: 25px;"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAAXNSR0IArs4c6QAABG9JREFUaEPtmFnIVlUUhh8JwkLLDMuKLhKCBigbDSmNUgtUiKKJtKKkKMtKKSOisJCcaDIrSE0syovKJsq00oaLFBsoJOmijAbSIqwcEynen3Vkudxnn/NNP/zguvu+vffaz1lnn7XetXvRA61XD2RmP3TmrR0NHAn0BjYC37fyhjsV6WOBK4GLgQtLANcBy4A3gY8beYh2Qx8F3A9MAA5sAGQNMN0eoHJZO6FHAEuBPpW7picsBq4H/qta3y7oO4DHM5utBb4E/gEmJ+Y9B9xUBVuMtwP6KuDlxIbvAA8An9uY3sAK4Jww90lAD13bWoU+BfgMOMjtqGgK4nn336HAcuDsQDYHuDtDezCwLY63Ai0QvfLjnNPvAJ3tn9x/hwAfAGeGzR8B7ssALwB0rJ5pJ/RM4B7nUBE5A1gfgD8CBoeNdWweLgFWIOcDNwBfmM+9prYSaRWJI5y3y4DXAvBK4PQANwV4NBNhAd/oxk8CvvXzm4UW4CvO0YeJIqIPMAI/CDyUAVYWUY73NhWY1Q7op4FbnKNrgRfCZsoqL8Fe+kZHZxjwe5jrj0R8pveBke2AfgsYY462AocDOxMRrAOeA5ZL+dVHv8d/s8fjK+BUg1QJHpJ55eMBVTtvOqPDLeLPAjeH8R0mroq/L7KU2fW7Weg/LLryobR0VgZaQ9cAL4Y5EkyrLUv4oVeBn0PBUSbZk/ebhf4VkDiSJdNSzaMSp0m7XAHMBu50g5f7D79Z6HdNdsrvXxb13RXR1nDqjBfLBCw4+VFmUoZq6/GYASgVFaavW195HRO4jsoBbrIH1t/++Om39IqOUpc1G2kJ/CVu07nApDrENseLLPm52q09F/jE/d5iRWx7K9BqmdRt+Ny5ydqpBri7OpuxwLiw6G1gtPvviXC+G4601JycXhA2WhhKbyPwfu4o4L2w+MSgZxqCFrA08vnBae2Oo+JJjrf0KVVY2Dzgtriu7pmWgFcEhnYIWH5fBwY4/1+bnN3VDHRf6zhi1ZP+mJiJ3kDgt4ro9rNGWMrP299WcTek1ldFuqzjeAq4PQO0CLgOeMMaAHU3ApDmHgScbKrwUqB/ws8ltja5RQ5aZysl4HPA8ie1p7LdjG22oiKpW2pl0IdZhE4LK9Vx35Xxl9LDdeEVIL2dH6sWlEHLgXSvt6omNGrsqr2L8U+t9VLjW8tS0JKJkove1Dn4sh2dqyLG1KQHlx+lyBNswb+ACpFaNTXFSqF/1iJ1k1LQxUdUTFM3fGvGsY5MvLdQ9KSB92n/GwVMzU9BT7NLlmK+tO159vVHH4/FEmvCRhWzI8ACSEEfA0igK93lwMuAde8hkdMxK/sQo4oTwC+AFJjyrS5a7g1Uart0rdtR4LJIFyxqcXTL4+0HK7cx7anlUoTVEHTcqiqiwHV5kpv3jZ35bgGuirSPeBm4gJXSGk5brbyOqkgXvnUZo9SnW8zCVlnJ7VbgupEuINV9S6RLPqoDz+qDViJZtbZupKv8dOv4fujuCnePjPT/VTfVLs6HgTgAAAAASUVORK5CYII="/>
+    </div>
+  
+  </div>
+  </div>
